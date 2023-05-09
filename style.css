@@ -26,14 +26,16 @@ body{
 }
 
 .texto{
+	margin-top: 5px;
 	width: 320px;
 	height: 35px;
 	padding: 5px;
 	border: 1px solid lightgray;
+	border-radius: 5px;
 }
 
 input:focus{
-	border: 1px solid gray;
+	outline: 1px solid gray;
 }
 
 .typed-text{

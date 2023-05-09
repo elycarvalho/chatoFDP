@@ -1,0 +1,72 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	font-family: 'Roboto', arial, sans-serif;
+	display: flex;
+	align-items: center;
+}
+
+.container{
+	position: relative;
+	margin: 0 auto;
+}
+
+.chat{
+	width: 320px;
+	height: 420px;
+	border: 1px solid lightgray;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.texto{
+	width: 320px;
+	height: 35px;
+	padding: 5px;
+	border: 1px solid lightgray;
+}
+
+input:focus{
+	border: 1px solid gray;
+}
+
+.typed-text{
+	margin: 10px 0;
+	padding: 5px;
+	width: 96%;
+	border: 1px solid lightgray;
+	word-wrap: break-word;
+}
+
+.btn-send{
+	position: absolute;
+	right: 0;
+	width: 40px;
+	height: 35px;
+	border: none;
+	background: none;
+}
+
+.texto-resposta{
+	padding: 5px;
+	position: relative;
+	left: 13px;
+	width: 96%;
+    border: 1px solid lightblue;
+}
+
+@media (min-width: 756px){
+	.chat{
+		width: 450px;
+	}
+	.texto{
+		width: 450px;
+	}
+}
+

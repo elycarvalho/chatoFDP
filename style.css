@@ -12,6 +12,7 @@ body{
 }
 
 .container{
+	height: 493px;
 	position: relative;
 	margin: 0 auto;
 }
@@ -35,7 +36,7 @@ body{
 .menu{
 	padding: 10px;
 	position: absolute;
-	top: 33px;
+	top: 31px;
 	left: 0;
 	width: 100px;
 	height: 420px;
@@ -46,6 +47,13 @@ body{
 	display: none;
 	border: 1px solid #4B4B4B;
 	z-index: 1;
+	animation-name: menu;
+	animation-duration: 0.3s;
+}
+
+@keyframes menu{
+	0%{width: 0px}
+	100%{width: 100px}
 }
 
 .chat{
@@ -57,6 +65,16 @@ body{
 	overflow-y: scroll;
 	overflow-x: hidden;
 	background-color: #F9FAF6;
+}
+
+.aviso{position: absolute;
+	right: 18px;
+	padding: 8px;
+    width: 300px;
+    height: 210px;
+    background-color: #F9FFD8;
+    border: 1px solid lightgray;
+    border-radius: 7px 0 10px 7px;
 }
 
 .texto{
@@ -78,7 +96,7 @@ input:focus{
 	width: 96%;
 	word-wrap: break-word;
 	background-color: #F0F8F6;
-	border-radius: 0 7px 7px 7px;
+	border-radius: 0 7px 7px 10px;
 	box-shadow: 2px 2px 2px lightgray;
 	border: 1px solid lightgray;
 }
@@ -100,8 +118,8 @@ input:focus{
 	position: relative;
 	left: 16px;
 	width: 96%;
-    background-color: #F6F8F0;
-    border-radius: 7px 0 7px 7px;
+    background-color: #F9FFD8;
+    border-radius: 7px 0 10px 7px;
     box-shadow: 1px 1px 2px lightgray;
     border: 1px solid lightgray;
 }

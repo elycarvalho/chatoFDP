@@ -32,18 +32,21 @@ function mostraMenu() {
 	}else{
 		menu.style.display = 'flex'
 	}
-	
 }
 
 function geraResposta(){
     digitado = texto.value.toLowerCase()
     let trecho = digitado.slice(0, 4)
-	if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o você é?"){
+	if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?"){
 		mostraResposta("Eu sou o chatoFDP, uma IA(Ignorância Artificial)")
 	}else if(trecho === "quem"){
         mostraResposta("Não sei quem é, não sei quem foi e nem me interessa saber!")
 	}else if(digitado === "teste" || digitado === "testando"){
         mostraResposta("Pronto, já testou!")
+	}else if(digitado === "filho da puta"){
+		mostraResposta("você que é!")
+	}else if(digitado === "viado"){
+        mostraResposta("'veado' é um animal mamífero ruminante da familia cervidae. A palavra 'viado' não existe.")
 	}else if(digitado === "vai se fuder" || digitado === "vai tomar no cu" || digitado === "fodas" || digitado === "vai pra puta que pariu"){
 		mostraResposta("Vai você seu mal-educado!")
 	}else if(digitado === "o que você faz?" || digitado === "você faz o que?"){
@@ -62,7 +65,7 @@ function geraResposta(){
 		mostraResposta("cara, eu não sei nem onde eu estou, nem aonde vou, nem onde judas perdeu as botas...")
 	}else if(trecho === "fala" || trecho === "fale" || trecho === "diga"){
 		mostraResposta("não vou dizer nada, porque não sei falar, só sei escrever!")
-	}else if(trecho === "por " || trecho2 === "porq"){
+	}else if(trecho === "por " || trecho === "porq"){
         mostraResposta("são tantos 'por ques' nesse mundo... a verdade é que eu não sei o por que!")
 	}else{
 		let resps = [

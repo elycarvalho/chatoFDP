@@ -13,11 +13,21 @@
 </head>
 <body>
 	<div class="container">
+		<div class="menu">
+		  <p>Não tem nada aqui!</p>
+		</div>
+
+		<div class="topo">
+			<button class="btn-menu" onclick="mostraMenu()">&#9776;</button>
+		  <p>new chat</p>
+		  <button class="btn-limpa" onclick="limpa()">&#9850;</button>
+		</div>
+
 	  <div class="chat">
 	  </div>
-	  <div class="text-typing">
-	  	<input type="text" class="texto" placeholder="Send a message.">
-	  	<button class="btn-send" onclick="send()"><i class="fas fa-paper-plane"></i></button>
+	  <div>
+	  	<input type="text" class="texto" placeholder="Enviar mensagem." maxlength="55">
+	  	<button class="btn-enviar" onclick="send()"><i class="fas fa-paper-plane"></i></button>
 	  </div>
 	</div>
 </body>

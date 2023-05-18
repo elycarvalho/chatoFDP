@@ -9,7 +9,7 @@ body{
 	font-family: 'Roboto', arial, sans-serif;
 	display: flex;
 	justify-content: center;
-	background-color: gray;
+	background-color: lightgray;
 }
 
 .container{

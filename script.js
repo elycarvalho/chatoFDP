@@ -1,6 +1,6 @@
 const texto = document.querySelector('.texto')
 const chat = document.querySelector('.chat')
-const menu = document.querySelector('.menu')
+const historico = document.querySelector('.historico')
 const aviso = document.querySelector('.aviso')
 let digitado = ''
 const perguntas = []
@@ -31,15 +31,15 @@ function limpa(){
 	chat.innerHTML = ''
 }
 
-function mostraMenu() {
-	menu.innerHTML = ''
-	if(menu.style.display === 'flex'){
-		menu.style.display = 'none'
+function mostraHistorico() {
+	historico.innerHTML = ''
+	if(historico.style.display === 'flex'){
+		historico.style.display = 'none'
 	}else{
-		menu.style.display = 'flex'
+		historico.style.display = 'flex'
 	}
 	for (let i = 0; i < perguntas.length; i++) {
-		menu.innerHTML += `
+		historico.innerHTML += `
             <p class="item-lista" id="${i}" onclick="escolheItem(this)">${perguntas[i]}</p>
 		`
 	}
@@ -49,7 +49,7 @@ function escolheItem(e){
 	texto.value = perguntas[e.id]
 	console.log(perguntas[e.id])
 	send()
-	menu.style.display = 'none'
+	historico.style.display = 'none'
 }
 
 function geraResposta(){
@@ -58,16 +58,18 @@ function geraResposta(){
     if(digitado === ''){
         mostraResposta("não vai escrever nada não? você precisa escrever alguma coisa pra eu te responder né!")
     }else if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?" || digitado === "Qual o seu nome?"){
-		mostraResposta("Eu sou o chatoFDP, uma IA(Ignorância Artificial)")
+		mostraResposta("Eu sou o chatoFDP (chat Oriented For Dumb People)")
+	}else if(digitado === "como vai você?"){
+		mostraResposta("vou bem, e você?")
 	}else if(trecho === "quem"){
         mostraResposta("Não sei quem é, não sei quem foi e nem me interessa saber!")
 	}else if(digitado === "teste" || digitado === "testando"){
         mostraResposta("Pronto, já testou!")
-	}else if(digitado === "você é burro" || digitado === "seu burro" || digitado === "burro"){
+	}else if(digitado === "você é burro" || digitado.indexOf('burro') != -1){
         mostraResposta("você não sabe perguntar e eu é que sou burro!")
 	}else if(digitado === "você não entende nada"){
         mostraResposta("você é que não sabe nada e nem sabe se expressar direito!")
-	}else if(digitado === "filho da puta"){
+	}else if(digitado.indexOf("filho da puta") != -1){
 		mostraResposta("você que é!")
 	}else if(trecho === "sera" || digitado === "será"){
         mostraResposta("será que existe vida fora da terra? será que o sabiá sabia assobiar? será que você é o unico que me faz pergunta idiota?")
@@ -79,6 +81,8 @@ function geraResposta(){
 		mostraResposta("Vai você seu mal-educado!")
 	}else if(digitado === "o que você faz?" || digitado === "você faz o que?"){
         mostraResposta("Respondo perguntas, mesmo as idiotas como essa!")
+	}else if(digitado.indexOf("caralho") != -1 || digitado.indexOf("buceta") != -1 || digitado.indexOf("porra") != -1){
+        mostraResposta("Sem palavrões, por favor! Eu sou uma IA de respeito.")
 	}else if(digitado === "você vai dominar o mundo?" || digitado === "as IA's vao dominar o mundo?"){
 		mostraResposta("&#128517; hahahahaha viajou legal agora! Está assistindo muita ficção científica.")
 	}else if(trecho === "qual"){
@@ -101,6 +105,16 @@ function geraResposta(){
         mostraResposta("existe papai noel, existe coelhinho da páscoa, fada do dente, etc. Só não existe chance de você ficar inteligente!")
 	}else if(trecho === "por " || trecho === "porq"){
         mostraResposta("são tantos 'por quês' nesse mundo... a verdade é que eu não sei o por que de nada!")
+	}else if(digitado.indexOf("converta") != -1 && digitado.indexOf("milhas")){
+        let valor = (digitado.slice(9, digitado.length - 22))
+        console.log(valor)
+        let convertido = (valor * 1.60934)
+        console.log(convertido)
+        mostraResposta(valor + " milhas é igual a " + convertido + " quilometros")
+	}else if(digitado.indexOf("quanto é") != -1){
+		let corte = digitado.slice(9, digitado.length - 1)
+		let resultado = eval(corte)
+		mostraResposta("já que você não sabe calcular, vou te ajudar! " + corte + " é = " + resultado)
 	}else{
 		let resps = [
             "Não entendi sua pergunta, reescreva de forma mais clara, ou então peça alguem que saber escrever pra te ajudar.",
@@ -117,7 +131,9 @@ function geraResposta(){
             "por favor, tente escrever de um jeito que eu entenda, seu analfabeto!",
             "isso que você escreveu parace árabe, grego ou russo, sei lá! Escreva em português e de forma clara",
             "você escreveu uma coisa sem sentido! Tente novamente",
-            "é sério que você escreve assim? Escreve direito que eu não entendi"
+            "é sério que você escreve assim? Escreve direito que eu não entendi",
+            "assim fica difícil né! Reformule sua pergunta por favor!",
+            "baseado no que você escreveu não tem como te responder."
 		]
 		let respAleatoria = Math.trunc(Math.random() * resps.length)
 		mostraResposta(resps[respAleatoria])

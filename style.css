@@ -25,7 +25,7 @@ body{
 	color: #F0F8F6;
 }
 
-.btn-menu, .btn-limpa{
+.btn-historico, .btn-limpa{
 	width: 30px;
 	background: none;
 	border: none;
@@ -33,7 +33,14 @@ body{
 	font-size: 1.1rem;
 }
 
-.menu{
+.label-historico{
+	position: absolute;
+	top: 20px;
+	left: 5px;
+    color: #fff;
+}
+
+.historico{
 	padding: 10px;
 	position: absolute;
 	top: 31px;
@@ -48,7 +55,7 @@ body{
 	display: none;
 	border: 1px solid #4B4B4B;
 	z-index: 1;
-	animation-name: menu;
+	animation-name: historico;
 	animation-duration: 0.3s;
 	overflow-x: scroll;
 	word-wrap: break-word;
@@ -60,7 +67,7 @@ body{
 	border-bottom: 1px solid #515151;
 }
 
-@keyframes menu{
+@keyframes historico{
 	0%{width: 0px}
 	100%{width: 200px}
 }
@@ -80,7 +87,7 @@ body{
 	right: 18px;
 	padding: 8px;
     width: 300px;
-    height: 210px;
+    height: 300px;
     background-color: #F9FFD8;
     border: 1px solid lightgray;
     border-radius: 7px 0 10px 7px;

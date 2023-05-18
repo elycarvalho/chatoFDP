@@ -9,6 +9,7 @@ body{
 	font-family: 'Roboto', arial, sans-serif;
 	display: flex;
 	justify-content: center;
+	background-color: gray;
 }
 
 .container{
@@ -33,14 +34,8 @@ body{
 	font-size: 1.1rem;
 }
 
-.label-historico{
-	position: absolute;
-	top: 20px;
-	left: 5px;
-    color: #fff;
-}
-
 .historico{
+	margin-top: 3px;
 	padding: 10px;
 	position: absolute;
 	top: 31px;
@@ -94,7 +89,7 @@ body{
 }
 
 .texto{
-	margin-top: 5px;
+	margin-top: 2px;
 	width: 320px;
 	height: 35px;
 	padding: 5px;

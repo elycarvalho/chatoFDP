@@ -33,6 +33,7 @@ function limpa(){
 
 function mostraHistorico() {
 	historico.innerHTML = ''
+	historico.innerHTML = `<h4>Histórico</h4>`
 	if(historico.style.display === 'flex'){
 		historico.style.display = 'none'
 	}else{

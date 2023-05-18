@@ -60,7 +60,13 @@ function geraResposta(){
         mostraResposta("não vai escrever nada não? você precisa escrever alguma coisa pra eu te responder né!")
     }else if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?" || digitado === "Qual o seu nome?"){
 		mostraResposta("Eu sou o chatoFDP (chat Oriented For Dumb People)")
-	}else if(digitado === "como vai você?"){
+	}else if(digitado.indexOf("bom dia") != -1){
+		const hora = new Date().toLocaleTimeString()
+		if(hora.slice(0, 1) >= 0){mostraResposta("Bom dia!")}
+		if(hora.slice(0, 1) >= 12){mostraResposta("Boa tarde!")}
+		if(hora.slice(0, 1) >= 18){mostraResposta("Boa noite!")}
+	}
+	else if(digitado === "como vai você?"){
 		mostraResposta("vou bem, e você?")
 	}else if(trecho === "quem"){
         mostraResposta("Não sei quem é, não sei quem foi e nem me interessa saber!")

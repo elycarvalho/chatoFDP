@@ -4,7 +4,7 @@ const historico = document.querySelector('.historico')
 const aviso = document.querySelector('.aviso')
 let digitado = ''
 const perguntas = []
-let nomeUsuario 
+let nomeUsuario = 'Amigo(a)' 
 
 texto.focus()
 
@@ -61,7 +61,7 @@ function geraResposta(){
         mostraResposta("não vai escrever nada não? você precisa escrever alguma coisa pra eu te responder né!")
     }else if(digitado.indexOf("meu nome é") != -1){
     	nomeUsuario = digitado.slice(10, digitado.length).toUpperCase()
-    	mostraResposta(`Olá ${nomeUsuario}!Eu sou o chatoFDP, em que posso te ajudar?`)
+    	mostraResposta(`Olá ${nomeUsuario}! Eu sou o chatoFDP, em que posso te ajudar?`)
     }else if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?" || digitado === "Qual o seu nome?"){
 		mostraResposta("Eu sou o chatoFDP (chat Oriented For Dumb People)")
 	}else if(digitado === "oi" || digitado === "olá" || digitado === "e ai"){
@@ -88,6 +88,10 @@ function geraResposta(){
 		mostraResposta("na verdade eu não ligo pra como você está " + nomeUsuario)
 	}else if(digitado.indexOf("você sabe") != -1 || digitado.indexOf("você sabia") != -1){
         mostraResposta("isso ai eu não sei não!")
+	}else if(digitado.indexOf("você é homem") != -1){
+        mostraResposta("sou um programa de computador, portanto não tenho gênero.")
+	}else if(digitado.indexOf("lula ou bolsonaro") != -1){
+        mostraResposta("Eu não me envolvo em brigas por política!")
 	}else if(trecho === "quem"){
         mostraResposta("Não sei quem é, não sei quem foi e nem me interessa saber!")
 	}else if(digitado === "teste" || digitado === "testando"){

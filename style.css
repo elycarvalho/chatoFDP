@@ -15,7 +15,7 @@ body{
 .container{
 	height: 493px;
 	position: relative;
-	margin: 0 auto;
+	margin: 15px auto;
 }
 
 .topo{
@@ -78,11 +78,12 @@ body{
 	background-color: #F9FAF6;
 }
 
-.aviso{position: absolute;
+.aviso{
+	position: absolute;
 	right: 18px;
 	padding: 8px;
     width: 300px;
-    height: 300px;
+    height: 360px;
     background-color: #F9FFD8;
     border: 1px solid lightgray;
     border-radius: 7px 0 10px 7px;

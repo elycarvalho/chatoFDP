@@ -4,6 +4,7 @@ const historico = document.querySelector('.historico')
 const aviso = document.querySelector('.aviso')
 let digitado = ''
 const perguntas = []
+let nomeUsuario 
 
 texto.focus()
 
@@ -58,16 +59,35 @@ function geraResposta(){
     let trecho = digitado.slice(0, 4)
     if(digitado === ''){
         mostraResposta("não vai escrever nada não? você precisa escrever alguma coisa pra eu te responder né!")
+    }else if(digitado.indexOf("meu nome é") != -1){
+    	nomeUsuario = digitado.slice(10, digitado.length).toUpperCase()
+    	mostraResposta(`Olá ${nomeUsuario}!Eu sou o chatoFDP, em que posso te ajudar?`)
     }else if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?" || digitado === "Qual o seu nome?"){
 		mostraResposta("Eu sou o chatoFDP (chat Oriented For Dumb People)")
+	}else if(digitado === "oi" || digitado === "olá" || digitado === "e ai"){
+        mostraResposta("Olá! Em que posso ajudar?")
 	}else if(digitado.indexOf("bom dia") != -1){
 		const hora = new Date().toLocaleTimeString()
-		if(hora.slice(0, 1) >= 0){mostraResposta("Bom dia!")}
-		if(hora.slice(0, 1) >= 12){mostraResposta("Boa tarde!")}
-		if(hora.slice(0, 1) >= 18){mostraResposta("Boa noite!")}
-	}
-	else if(digitado === "como vai você?"){
+		console.log(hora.slice(0, 2))
+		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("Bom dia!")}
+		if(hora.slice(0, 2) >= 12){mostraResposta("Já passou do meio-dia, então é boa tarde!")}
+		if(hora.slice(0, 2) >= 18){mostraResposta("já passou das 18h, então é boa noite!")}
+	}else if(digitado.indexOf("boa tarde") != -1){
+		const hora = new Date().toLocaleTimeString()
+		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("ainda é de manhã, então é Bom dia!")}
+		if(hora.slice(0, 2) >= 12){mostraResposta("Boa tarde!")}
+		if(hora.slice(0, 2) >= 18){mostraResposta("já passou das 18h, então é boa noite!")}
+    }else if(digitado.indexOf("boa noite") != -1){
+		const hora = new Date().toLocaleTimeString()
+		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("ainda é de manhã, então é Bom dia!")}
+		if(hora.slice(0, 2) >= 12){mostraResposta("ainda não escureceu, então é boa tarde!")}
+		if(hora.slice(0, 2) >= 18){mostraResposta("Boa noite!")}
+    }else if(digitado === "como vai você?"){
 		mostraResposta("vou bem, e você?")
+	}else if(digitado.indexOf("eu estou") != -1){
+		mostraResposta("na verdade eu não ligo pra como você está " + nomeUsuario)
+	}else if(digitado.indexOf("você sabe") != -1 || digitado.indexOf("você sabia") != -1){
+        mostraResposta("isso ai eu não sei não!")
 	}else if(trecho === "quem"){
         mostraResposta("Não sei quem é, não sei quem foi e nem me interessa saber!")
 	}else if(digitado === "teste" || digitado === "testando"){
@@ -89,7 +109,9 @@ function geraResposta(){
 	}else if(digitado === "o que você faz?" || digitado === "você faz o que?"){
         mostraResposta("Respondo perguntas, mesmo as idiotas como essa!")
 	}else if(digitado.indexOf("caralho") != -1 || digitado.indexOf("buceta") != -1 || digitado.indexOf("porra") != -1){
-        mostraResposta("Sem palavrões, por favor! Eu sou uma IA de respeito.")
+        mostraResposta(`Sem palavrões ${nomeUsuario}, por favor! Eu sou uma IA de respeito.`)
+	}else if(digitado === "desenvolva" || digitado === "desenvolve"){
+		mostraResposta(`${nomeUsuario}! você precisa 'desenvolver' esse seu intelecto é aprender a fazer as coisas sozinho e parar de ficar esperando IA fazer pra você!`)
 	}else if(digitado === "você vai dominar o mundo?" || digitado === "as IA's vao dominar o mundo?"){
 		mostraResposta("&#128517; hahahahaha viajou legal agora! Está assistindo muita ficção científica.")
 	}else if(trecho === "qual"){
@@ -104,12 +126,14 @@ function geraResposta(){
 		mostraResposta("cara, eu não sei nem onde eu estou, nem aonde vou, nem onde judas perdeu as botas...")
 	}else if(trecho === "fala" || trecho === "fale" || trecho === "diga"){
 		mostraResposta("não vou dizer nada, porque não sei falar, só sei escrever!")
-	}else if(trecho === "what" || trecho === "why " || trecho === "who " || trecho === "wher" || trecho === "how " || trecho === "fuck"){
+	}else if(trecho === "what" || trecho === "why " || trecho === "who " || trecho === "wher" || trecho === "how "){
         mostraResposta("Eu não entendo nem português direito, muito menos inglês!")
 	}else if(trecho === "trad"){
         mostraResposta("não sei traduzir isso!")
 	}else if(trecho === "exis"){
         mostraResposta("existe papai noel, existe coelhinho da páscoa, fada do dente, etc. Só não existe chance de você ficar inteligente!")
+	}else if(trecho === "fuck" || trecho === "bitch" || trecho === "asshole"){
+        mostraResposta("palavrão em inglês você sabe né")
 	}else if(trecho === "por " || trecho === "porq"){
         mostraResposta("são tantos 'por quês' nesse mundo... a verdade é que eu não sei o por que de nada!")
 	}else if(digitado.indexOf("converta") != -1 && digitado.indexOf("milhas")){
@@ -121,7 +145,7 @@ function geraResposta(){
 	}else if(digitado.indexOf("quanto é") != -1){
 		let corte = digitado.slice(9, digitado.length - 1)
 		let resultado = eval(corte)
-		mostraResposta("já que você não sabe calcular, vou te ajudar! " + corte + " é = " + resultado)
+		mostraResposta("já que você não sabe, calcular... " + corte + " é = " + resultado)
 	}else{
 		let resps = [
             "Não entendi sua pergunta, reescreva de forma mais clara, ou então peça alguem que saber escrever pra te ajudar.",
@@ -140,7 +164,9 @@ function geraResposta(){
             "você escreveu uma coisa sem sentido! Tente novamente",
             "é sério que você escreve assim? Escreve direito que eu não entendi",
             "assim fica difícil né! Reformule sua pergunta por favor!",
-            "baseado no que você escreveu não tem como te responder."
+            "baseado no que você escreveu não tem como te responder.",
+            "aaah tá! vou fingir que entendi... Amigo, escreva novamente, se for perguntar não se esqueça do ponto de interrogação (?)",
+            "Olha, já vou avisando que se ficar escrevendo coisas sem sentido, nossa conversa não vai fluir."
 		]
 		let respAleatoria = Math.trunc(Math.random() * resps.length)
 		mostraResposta(resps[respAleatoria])

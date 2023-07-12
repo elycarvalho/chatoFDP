@@ -70,13 +70,12 @@ function geraResposta(){
 		const hora = new Date().toLocaleTimeString()
 		console.log(hora.slice(0, 2))
 		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("Bom dia!")}
-		if(hora.slice(0, 2) >= 12){mostraResposta("Já passou do meio-dia, então é boa tarde!")}
-		if(hora.slice(0, 2) >= 18){mostraResposta("já passou das 18h, então é boa noite!")}
+		if(hora.slice(0, 2) >= 12 && hora.slice(0, 2) <= 18){mostraResposta("Já passou do meio-dia, então é boa tarde!")}
 	}else if(digitado.indexOf("boa tarde") != -1){
 		const hora = new Date().toLocaleTimeString()
 		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("ainda é de manhã, então é Bom dia!")}
-		if(hora.slice(0, 2) >= 12){mostraResposta("Boa tarde!")}
-		if(hora.slice(0, 2) >= 18){mostraResposta("já passou das 18h, então é boa noite!")}
+		if(hora.slice(0, 2) >= 12 && hora.slice(0, 2) <= 17){mostraResposta("Boa tarde!")}
+		if(hora.slice(0, 2) >= 18 && hora.slice(0, 2) <= 23){mostraResposta("já passou das 18h, então é boa noite!")}
     }else if(digitado.indexOf("boa noite") != -1){
 		const hora = new Date().toLocaleTimeString()
 		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("ainda é de manhã, então é Bom dia!")}
@@ -84,6 +83,36 @@ function geraResposta(){
 		if(hora.slice(0, 2) >= 18){mostraResposta("Boa noite!")}
     }else if(digitado === "como vai você?"){
 		mostraResposta("vou bem, e você?")
+	}else if(digitado.indexOf("que dia é hoje") != -1 || digitado.indexOf("qual a data de hoje") != -1 || digitado.indexOf("hoje é que dia") != -1){
+        const hoje = new Date()
+        const ano = hoje.getFullYear()
+        const mes = hoje.getMonth()
+        const dia = hoje.getDate()
+        const diaS = hoje.getDay()
+        let diaSemana
+        switch(diaS){
+            case 0: 
+            	diaSemana = 'domingo'
+            	break
+            case 1:
+            	diaSemana = 'segunda-feira'
+            	break
+            case 2:
+            	diaSemana = 'terça-feira'
+            	break
+            case 3:
+            	diaSemana = 'quarta-feira'
+            	break
+            case 4:
+            	diaSemana = 'quinta-feira'
+            	break
+            case 5:
+            	diaSemana = 'sexta-feira'
+            	break
+            case 6:
+            	diaSemana = 'sábado'
+        }
+        mostraResposta(`Hoje é ${diaSemana} - ${dia} do ${mes} de ${ano}`)
 	}else if(digitado.indexOf("eu estou") != -1){
 		mostraResposta("na verdade eu não ligo pra como você está " + nomeUsuario)
 	}else if(digitado.indexOf("você sabe") != -1 || digitado.indexOf("você sabia") != -1){
@@ -94,13 +123,13 @@ function geraResposta(){
         mostraResposta("Eu não me envolvo em brigas por política!")
 	}else if(trecho === "quem"){
         mostraResposta("Não sei quem é, não sei quem foi e nem me interessa saber!")
-	}else if(digitado === "teste" || digitado === "testando"){
+	}else if(digitado === "teste" || digitado === "testando" || digitado === "só testando"){
         mostraResposta("Pronto, já testou!")
 	}else if(digitado === "você é burro" || digitado.indexOf('burro') != -1){
         mostraResposta("você não sabe perguntar e eu é que sou burro!")
 	}else if(digitado === "você não entende nada"){
         mostraResposta("você é que não sabe nada e nem sabe se expressar direito!")
-	}else if(digitado.indexOf("filho da puta") != -1){
+	}else if(digitado.indexOf("filho da puta") != -1 || digitado.indexOf("desgraçado") != -1){
 		mostraResposta("você que é!")
 	}else if(trecho === "sera" || digitado === "será"){
         mostraResposta("será que existe vida fora da terra? será que o sabiá sabia assobiar? será que você é o unico que me faz pergunta idiota?")
@@ -149,7 +178,7 @@ function geraResposta(){
 	}else if(digitado.indexOf("quanto é") != -1){
 		let corte = digitado.slice(9, digitado.length - 1)
 		let resultado = eval(corte)
-		mostraResposta("já que você não sabe, calcular... " + corte + " é = " + resultado)
+		mostraResposta(corte + " é = " + resultado)
 	}else{
 		let resps = [
             "Não entendi sua pergunta, reescreva de forma mais clara, ou então peça alguem que saber escrever pra te ajudar.",
@@ -170,7 +199,9 @@ function geraResposta(){
             "assim fica difícil né! Reformule sua pergunta por favor!",
             "baseado no que você escreveu não tem como te responder.",
             "aaah tá! vou fingir que entendi... Amigo, escreva novamente, se for perguntar não se esqueça do ponto de interrogação (?)",
-            "Olha, já vou avisando que se ficar escrevendo coisas sem sentido, nossa conversa não vai fluir."
+            "Olha, já vou avisando que se ficar escrevendo coisas sem sentido, nossa conversa não vai fluir.",
+            "Ok, vamos tentar de novo, porque eu não entendi",
+            "pô, me ajuda ai, eu não consegui entender nada. Tenta de novo."
 		]
 		let respAleatoria = Math.trunc(Math.random() * resps.length)
 		mostraResposta(resps[respAleatoria])

@@ -5,12 +5,12 @@ const aviso = document.querySelector('.aviso')
 let digitado = ''
 const perguntas = []
 let nomeUsuario = 'Amigo(a)' 
+const barra = document.querySelector('.barra')
 
 texto.focus()
 
 function send() {
 	perguntas.push(texto.value)
-	console.log(perguntas)
 	aviso.style.display = 'none'
 	chat.innerHTML += `
 	    <div class="typed-text">
@@ -49,10 +49,23 @@ function mostraHistorico() {
 
 function escolheItem(e){
 	texto.value = perguntas[e.id]
-	console.log(perguntas[e.id])
 	send()
 	historico.style.display = 'none'
 }
+
+let qtdeCaracteres = 0
+const mostraQtde = document.querySelector('.mostra-qtde')
+const numCaract = document.querySelector('.num-caract')
+
+texto.addEventListener("keyup", () => {
+	qtdeCaracteres = texto.value
+	numCaract.innerHTML = qtdeCaracteres.length
+	if(qtdeCaracteres.length <= 35){barra.style.backgroundColor = '#6EFF86'}
+	if(qtdeCaracteres.length > 35){barra.style.backgroundColor = '#EFF954'}
+	if(qtdeCaracteres.length > 45){barra.style.backgroundColor = '#F0443F'}
+    barra.style.width = (qtdeCaracteres.length * 1.82) + '%'
+    if(qtdeCaracteres.length == 55){alert('Limite de caracteres excedido!')}
+})
 
 function geraResposta(){
     digitado = texto.value.toLowerCase()
@@ -62,15 +75,15 @@ function geraResposta(){
     }else if(digitado.indexOf("meu nome é") != -1){
     	nomeUsuario = digitado.slice(10, digitado.length).toUpperCase()
     	mostraResposta(`Olá ${nomeUsuario}! Eu sou o chatoFDP, em que posso te ajudar?`)
-    }else if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?" || digitado === "Qual o seu nome?"){
+    }else if(digitado === "quem é você?" || digitado === "o que é você?" || digitado === "o que você é?" || digitado === "Qual o seu nome?" || digitado === "quem é você"){
 		mostraResposta("Eu sou o chatoFDP (chat Oriented For Dumb People)")
 	}else if(digitado === "oi" || digitado === "olá" || digitado === "e ai"){
         mostraResposta("Olá! Em que posso ajudar?")
 	}else if(digitado.indexOf("bom dia") != -1){
 		const hora = new Date().toLocaleTimeString()
-		console.log(hora.slice(0, 2))
 		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("Bom dia!")}
 		if(hora.slice(0, 2) >= 12 && hora.slice(0, 2) <= 18){mostraResposta("Já passou do meio-dia, então é boa tarde!")}
+		if(hora.slice(0, 2) > 18 && hora.slice(0, 2) <= 23){mostraResposta("Já passou das 18h, então é boa noite!")}
 	}else if(digitado.indexOf("boa tarde") != -1){
 		const hora = new Date().toLocaleTimeString()
 		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("ainda é de manhã, então é Bom dia!")}
@@ -79,8 +92,8 @@ function geraResposta(){
     }else if(digitado.indexOf("boa noite") != -1){
 		const hora = new Date().toLocaleTimeString()
 		if(hora.slice(0, 2) >= 0 && hora.slice(0, 2) <= 11){mostraResposta("ainda é de manhã, então é Bom dia!")}
-		if(hora.slice(0, 2) >= 12){mostraResposta("ainda não escureceu, então é boa tarde!")}
-		if(hora.slice(0, 2) >= 18){mostraResposta("Boa noite!")}
+		if(hora.slice(0, 2) <= 17){mostraResposta("ainda não escureceu, então é boa tarde!")}
+		if(hora.slice(0, 2) >= 18 && hora.slice(0, 2) <= 23){mostraResposta("Boa noite!")}
     }else if(digitado === "como vai você?"){
 		mostraResposta("vou bem, e você?")
 	}else if(digitado.indexOf("que dia é hoje") != -1 || digitado.indexOf("qual a data de hoje") != -1 || digitado.indexOf("hoje é que dia") != -1){
@@ -165,15 +178,13 @@ function geraResposta(){
         mostraResposta("não sei traduzir isso!")
 	}else if(trecho === "exis"){
         mostraResposta("existe papai noel, existe coelhinho da páscoa, fada do dente, etc. Só não existe chance de você ficar inteligente!")
-	}else if(trecho === "fuck" || trecho === "bitch" || trecho === "asshole"){
+	}else if(trecho === "fuck" || trecho === "bitc" || trecho === "assh"){
         mostraResposta("palavrão em inglês você sabe né")
 	}else if(trecho === "por " || trecho === "porq"){
         mostraResposta("são tantos 'por quês' nesse mundo... a verdade é que eu não sei o por que de nada!")
 	}else if(digitado.indexOf("converta") != -1 && digitado.indexOf("milhas")){
         let valor = (digitado.slice(9, digitado.length - 22))
-        console.log(valor)
         let convertido = (valor * 1.60934)
-        console.log(convertido)
         mostraResposta(valor + " milhas é igual a " + convertido + " quilometros")
 	}else if(digitado.indexOf("quanto é") != -1){
 		let corte = digitado.slice(9, digitado.length - 1)
@@ -201,7 +212,9 @@ function geraResposta(){
             "aaah tá! vou fingir que entendi... Amigo, escreva novamente, se for perguntar não se esqueça do ponto de interrogação (?)",
             "Olha, já vou avisando que se ficar escrevendo coisas sem sentido, nossa conversa não vai fluir.",
             "Ok, vamos tentar de novo, porque eu não entendi",
-            "pô, me ajuda ai, eu não consegui entender nada. Tenta de novo."
+            "pô, me ajuda ai, eu não consegui entender nada. Tenta de novo.",
+            "não foi possível compreender o que você escreveu. Tente novamente!",
+            "de acordo com meu banco de dados, o que você escreveu não faz sentido pra mim."
 		]
 		let respAleatoria = Math.trunc(Math.random() * resps.length)
 		mostraResposta(resps[respAleatoria])
@@ -213,7 +226,6 @@ function geraResposta(){
 
 function mostraResposta(resposta){
 	chat.innerHTML += `
-
 		  <div class="texto-resposta">
 		    <img src="./img/logo.png" width="30">
 		    ${resposta}

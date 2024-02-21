@@ -113,6 +113,28 @@ input:focus{
 	border: 1px solid lightgray;
 }
 
+.mostra-qtde{
+	position: relative;
+	background-color: #fff;
+	margin-top: 2px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.barra{
+	position: absolute;
+	top: 0;
+	background-color: green;
+	height: 100%;
+}
+
+.num-caract{
+	position: relative;
+    font-size: 0.6rem;
+    z-index: 1;
+}
+
 .btn-enviar{
 	color: darkgray;
 	position: absolute;

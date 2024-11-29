@@ -1,173 +1,197 @@
 *{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body{
-	height: 100vh;
-	font-family: 'Roboto', arial, sans-serif;
-	display: flex;
-	justify-content: center;
-	background-color: lightgray;
+  height: 100vh;
+  font-family: Helvetica, arial, sans-serif;
+ background-image: linear-gradient(#8AB8FB, #BBBCF8);
+  background-repeat: no-repeat;
+}
+
+.tela-inicial{
+  text-align: center;
+  width: 80%;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: 10%;
+  /*background-color: #F5FCA0;*/
+  background-image: radial-gradient(#F5FCA0, #f5e467);
+  /*border: 2px solid #DC9426;*/
+  border-radius: 10px;
+  box-shadow: 5px 10px 20px;
+}
+
+.level-container{
+  width: 200px;
+}
+
+.level{
+  font-size: 1.1rem;
+  width: 90%;
+  text-align: center;
+  border-radius: 5px;
+  height: 1.5rem;
+}
+
+.tela-final{
+  width: 90%;
+  height: 570px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: 5%;
+  background-image: radial-gradient(#F5FCA0, #e3fb6b);
+  border-radius: 10px;
+}
+
+.palavra{
+  font-size: 1.8rem;
 }
 
 .container{
-	height: 493px;
-	position: relative;
-	margin: 15px auto;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.topo{
-	display: flex;
-	justify-content: space-between;
-	padding: 5px;
-	background-color: #363D3C;
-	color: #F0F8F6;
+#tracos{
+  border: 2px solid darkblue;
+  padding: 5px;
+  font-size: 1.8rem;
+  margin: 5px;
+  background-color: #D7F7FF;
 }
 
-.btn-historico, .btn-limpa{
-	width: 30px;
-	background: none;
-	border: none;
-	color: #fff;
-	font-size: 1.1rem;
+#letra{
+  border: 3px solid red;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 42px;
+  margin: 10px;
 }
 
-.historico{
-	margin-top: 3px;
-	padding: 10px;
-	position: absolute;
-	top: 31px;
-	left: 0;
-	width: 200px;
-	height: 420px;
-	background-color: #363D3C;
-	color: #fff;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	display: none;
-	border: 1px solid #4B4B4B;
-	z-index: 1;
-	animation-name: historico;
-	animation-duration: 0.3s;
-	overflow-x: scroll;
-	word-wrap: break-word;
+.digitadas{
+  width: 245px;
+  height: 22px;
+  padding-top: 2px;
+  border: 1px solid darkgreen;
+  background-color: #fff;
+  text-align: center;
+  font-size: 0.8rem;
 }
 
-.item-lista{
-	padding: 3px;
-	width: 100%;
-	border-bottom: 1px solid #515151;
+.erros{
+  margin-top: 5px;
 }
 
-@keyframes historico{
-	0%{width: 0px}
-	100%{width: 200px}
+.poste{
+  position: relative;
 }
 
-.chat{
-	width: 320px;
-	height: 420px;
-	border: 1px solid lightgray;
-	display: flex;
-	flex-direction: column;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	background-color: #F9FAF6;
+.poste img{
+  width: 160px;
 }
 
-.aviso{
-	position: absolute;
-	right: 18px;
-	padding: 8px;
-    width: 300px;
-    height: 360px;
-    background-color: #F9FFD8;
-    border: 1px solid lightgray;
-    border-radius: 7px 0 10px 7px;
+#corpo{
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.texto{
-	margin-top: 2px;
-	width: 320px;
-	height: 35px;
-	padding: 5px;
-	border: 1px solid lightgray;
-	border-radius: 4px;
+.partes img{
+  width: 50%;
 }
 
-input:focus{
-	outline: 1px solid gray;
+#cabeca{
+  font-size: 2rem;
+  position: relative;
+  bottom: 132px;
+  left: 36px;
 }
 
-.typed-text{
-	margin: 10px 0;
-	padding: 5px;
-	width: 96%;
-	word-wrap: break-word;
-	background-color: #F0F8F6;
-	border-radius: 0 7px 7px 10px;
-	box-shadow: 2px 2px 2px lightgray;
-	border: 1px solid lightgray;
+#tronco{
+  position: relative;
+  bottom: 135px;
+  left: 39px;
 }
 
-.mostra-qtde{
-	position: relative;
-	background-color: #fff;
-	margin-top: 2px;
-	border: 1px solid gray;
-	border-radius: 4px;
-	text-align: center;
+#bracoEsq{
+  position: relative;
+  bottom: 190px;
+  left: 35px;
 }
 
-.barra{
-	position: absolute;
-	top: 0;
-	background-color: green;
-	height: 100%;
+#bracoDir{
+  position: relative;
+  bottom: 213px;
+  left: 65px;
 }
 
-.num-caract{
-	position: relative;
-    font-size: 0.6rem;
-    z-index: 1;
+#pernaEsq{
+  position: relative;
+  bottom: 185px;
+  left: 35px;
 }
 
-.btn-enviar{
-	color: darkgray;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 40px;
-	height: 35px;
-	border: none;
-	background: none;
-	outline-color: darkgray;
+#pernaDir{
+  position: relative;
+  bottom: 216px;
+  left: 58px;
 }
 
-.texto-resposta{
-	padding: 5px;
-	position: relative;
-	left: 16px;
-	width: 96%;
-    background-color: #F9FFD8;
-    border-radius: 7px 0 10px 7px;
-    box-shadow: 1px 1px 2px lightgray;
-    border: 1px solid lightgray;
+.btn-comecar{
+  margin-top: 20px;
+  font-weight: bold;
+  width: 180px;
+  height: 35px;
+  background-color: darkorange;
+  border-radius: 5px;
 }
 
-.texto-resposta img, .typed-text img{
-	margin-right: 5px;
+.btn-recomecar{
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 110px;
+  height: 48px;
+  background-color: lightblue;
+  border-radius: 5px;
 }
 
-@media (min-width: 756px){
-	.chat{
-		width: 450px;
-	}
-	.texto{
-		width: 450px;
-	}
+.mensagem-final{
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
+.dica{
+  padding: 5px;
+  position: relative;
+  bottom: 6px;
+  right: 5px;
+  display: none;
+  font-weight: bold;
+  border: 2px solid red;
+  background-color: yellow;
+}
+
+.tecla{
+  margin-left: 30px;
+}
